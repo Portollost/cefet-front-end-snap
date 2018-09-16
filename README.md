@@ -1,62 +1,109 @@
-# P~~oké~~hotoSnap
+# P~~oké~~hotoSnap :camera: x2
 
-Uma ferramenta para marcar suas fotos!
+Uma ferramenta para marcar suas fotos! Agora com **jQuery** =D
 
 ![](https://fegemo.github.io/cefet-front-end-large-assets/apng/resultado-final.png)
 
 ## Atividade
 
-Você deve modificar a página para que ela mostre duas marcações
-(~~pokémons~~) na imagem (~~foto~~). Cada marcação é definida por um
-quadrado e possui um título e um conteúdo, que devem ser exibidos em
-um balãozinho quando o usuário passar o mouse sobre cada uma.
+[Baixe os arquivos aqui][baixe-aqui]. Você deve modificar a página
+para que ela mostre as marcações na imagem. Cada marcação é definida por
+uma região retangular e possui um título e um conteúdo, que devem ser
+exibidos em um balãozinho quando o usuário passar o mouse sobre cada uma.
+
+### Exercício 0: Verificar funcionalidade pronta
+
+Repare que existem dois arquivos JavaScript:
+
+1. `script/balaozinho-vanilla.js`
+1. `script/balaozinho-jquery.js`
+
+O arquivo `index.html` está incluindo o `balaozinho-vanilla.js`, que contém
+a atividade pronta, mas usando JavaScript puro (que chamamos de
+_"vanilla JavaScript"_).
+
+Abra a página no navegador e veja que o balãozinho está funcionando, assim
+como o botão para "definir região" da primeira marcação.
+
+Agora, altere o `index.html` para apontar para o `script/balaozinho-jquery.js`,
+**que está vazio** - aí vai "parar de funcionar".
+
+Além de trocar do `balaozinho-vanilla.js` para o `balaozinho-jquery.js`, você
+deve incluir a biblioteca jQuery. Há duas formas de fazê-lo e, para lembrar,
+veja nos slides [como incluir uma biblioteca][incluindo-biblioteca]. Você
+vai precisar achar o site oficial da jQuery e ver as instruções lá. Na página
+de _download_, pode haver várias versões da biblioteca. Prefira a mais recente,
+e também, se tiver opção de versão comprimida/descomprimida, prefira a
+comprimida (arquivo menor).
+
+_Atenção_: o arquivo do jQuery deve ser **incluído ANTES** do
+`balaozinho-jquery.js`, porque este último depende da biblioteca (logo,
+deve vir depois).
 
 ### Exercício 1: Alterar/remover conteúdo do balãozinho
 
 ![Resultado da realização do exercício 1](https://fegemo.github.io/cefet-front-end-large-assets/apng/exercicio-1.png)
 
-Crie um código JavaScript (_e.g._, `balaozinho.js`) que, para cada região
-anotada (`.marcacao`, cada quadradinho dentro da imagem), define o
-conteúdo do elemento `#balaozinho` (lembre-se
-[como definir o conteúdo de um elemento HTML][inner-html]) com uma
-string qualquer.
+Em `script/balaozinho-jquery.js` (a) pegue uma referência às marcações
+(`.marcacao`) e jogue para uma variável (_e.g._, com nome `$marcacoes`¹).
+Faça o mesmo para o balãozinho (`#balaozinho`, com variável `$balaozinho`).
 
-Você deve atrelar os devidos eventos de mouse **a cada¹** `.marcacao`
-para que (relembre os [eventos de mouse][eventos-de-mouse]):
+```js
+// pegando 01 elemento: com vanilla JS vs com jQuery
+let qtdePasteisEl = document.querySelector('#id-de-um-elemento');
+let $qtdePasteis = $('#id-de-um-elemento');
+```
+
+```js
+// pegando todos os elementos: com vanilla JS vs com jQuery
+let paragrafosDestacados = document.querySelectorAll('.uma-classe');
+let $paragrafosDestacados = $('.uma-classe');
+```
+
+Você deve atrelar os devidos eventos de mouse (veja slides sobre
+[eventos em jQuery][eventos-jquery]) a cada `.marcacao` de forma que:
 
 1. quando o **mouse entrar no quadradinho**, definir o conteúdo do
    `#balaozinho` como uma string qualquer
-2. quando o **mouse sair do quadradinho**, definir o conteúdo como
+   - Para definir o conteúdo de um elemento HMTL (_i.e._, o `innerHTML`)
+     usando jQuery, você deve usar o método `.html('<novo valor>')`
+     (veja nos slides como [alterar o HTML em jQuery][jquery-alterar-html])
+1. quando o **mouse sair do quadradinho**, definir o conteúdo como
    uma string vazia
 
-Se acontecer do _balãozinho ficar "piscando"_ ao mexer o mouse, veja o [FAQ](#faq)
-sobre como consertar.
+```js
+// atrelando eventos a múltiplos elementos: com vanilla JS
+let paragrafos = document.querySelectorAll('p');
+for (let paragrafoEl of paragrafos) {
+  paragrafoEl.addEventListener('click', paragrafoClicado);
+});
+
+// com jQuery
+$('p').click(paragrafoClicado);
+```
+
+¹**Nomenclatura de variáveis**: é uma boa convenção colocar o sufixo "El" no nome
+de variáveis que apontam para elementos HTML (em _vanilla JS_). Contudo,
+quando estamos usando jQuery, a convenção mais comum é **não usar o sufixo "El"
+e colocar um prefixo "$"** para as variáveis. Exemplos:
 
 
-¹ No momento existem duas `.marcacao`s, mas pode ser que existam muitas
-outras, ou até nenhuma. Lembre-se de como
-[selecionar vários elementos do DOM][selecionar-varios]. Você fez isso na
-prática da exploração espacial. Lembre-se também de como 
-[associar eventos a elementos HTML][associar-eventos].
-
-### Exercício 2: Formatação do balãozinho
+### Exercício 2: ~~Formatação do balãozinho~~ (já está feito)
 
 ![Resultado da realização do exercício 2](https://fegemo.github.io/cefet-front-end-large-assets/apng/exercicio-2.png)
 
-Este é um **exercício de CSS** mesmo (não precisa fazer em JavaScript). Estilize o `#balaozinho` para que ele se pareça com um balãozinho mesmo.
-Sugestões:
+~~Estilize o `#balaozinho` para que ele se pareça com um balãozinho mesmo.
+Sugestões:~~
 
-- Tamanho de fonte menor (tipo `10px`)
-- Cor de fundo semitransparente
-- Bordinha marota
-- Um espacinho interno (`padding`)
-- Cantinho levemente arredondado
-- Uma sombra sinistra (veja [FAQ](#faq))
+- ~~Tamanho de fonte menor (tipo `10px`)~~
+- ~~Cor de fundo semitransparente~~
+- ~~Bordinha marota~~
+- ~~Um espacinho interno (`padding`)~~
+- ~~Cantinho levemente arredondado~~
+- ~~Uma sombra sinistra (veja FAQ)~~
 
-Além disso, altere o pointeiro do mouse quando ele estiver 
-em uma `.marcacao`. Isso pode ser feito em 
-**uma regra que estiliza `.marcacao`** e define a propriedade 
-`cursor` como `help` (interrogação) ou `pointer` (mãozinha).
+~~Além disso, faça com que o mouse fique com o `cursor` de `help` (mostra
+uma interrogação em vez da setinha) quando em uma `.marcacao`.~~
 
 
 ### Exercício 3: Definir título/conteúdo correto do balãozinho
@@ -72,20 +119,6 @@ contenha o título e o conteúdo da marcação, tipo assim:
   <p>conteúdo da anotação</p>
 </div>
 ```
-
-> **Você sabia??** É possível colocar elementos HTML dentro de uma string que
-> estamos atribuindo ao `innerHTML` de um elemento, tipo assim:
-
-> ~~~js
-> algumEl.innerHTML = '<span>abc</span><div>def</div>';
-> ~~~
-
-Mas como saber qual das duas `.marcacao` passamos o mouse em cima?
-Basta pegar qual elemento foi **alvo do evento** (`mouseover`). Para
-isso, lembre-se do [argumento de evento][argumento-de-evento] (vimos
-na aula da exploração espacial para saber qual dos botões dos parágrafos
-havia sido clicado).
-
 
 Cada `.marcacao` é uma `<div></div>` devidamente estilizada e ela
 está assim:
@@ -106,29 +139,42 @@ Na verdade, nós podemos usar atributos que não existem no HTML para
 nossos próprios propósitos. Basta colocar `data-novoatributo` em um
 elemento (_data_ em inglês = dados em português).
 
-Para acessar o valor desses atributos, usamos uma propriedade `dataset`
-do elemento HTML, assim:
+Para acessar o valor desses atributos em _vanilla JS_ usamos a
+propriedade `dataset` do elemento HTML, assim:
 
 ```html
 <span data-dikentinha="um texto">Algum assunto</span>
 ```
 ```js
-let algumEl = document.querySelector('....');
+let algumEl = document.querySelector('#um-id');
 console.log(algumEl.dataset.dikentinha);
 // imprime "um texto" no console
 ```
 
+...contudo, **em jQuery**, usamos o método `.data('nome-do-atributo')`, assim:
+
+```html
+<span data-dikentinha="um texto">Algum assunto</span>
+```
+```js
+let $algum = $('#um-id');
+console.log($algum.data('dikentinha'));
+// imprime "um texto" no console
+```
+
+Esse método `.data('nome-do-atributo')` não está nos slides, mas você pode
+consultar a documentação da biblioteca:
+https://api.jquery.com/data/#data2
 
 ### Exercício 4: Posicionamento do balãozinho
 
 ![Resultado da realização do exercício 4](https://fegemo.github.io/cefet-front-end-large-assets/apng/exercicio-4.png)
 
-Faça com que, quando o mouse se movimente dentro de uma `.marcacao`,
-o `#balaozinho` se posicione nas mesmas coordenadas que o mouse. Veja
-como [pegar a posição do mouse][posicao-mouse] nos slides. Lembre-se:
-será necessário usar o [argumento de evento][argumento-de-evento],
-que é um parâmetro das _callbacks_ de evento e contém informações
-sobre o que aconteceu.
+Faça com que, quando o mouse se movimente dentro de uma `.marcacao`
+(_i.e._, evento `mousemove`), o `#balaozinho` se posicione nas mesmas
+coordenadas que o mouse. Veja como [pegar a posição do mouse][posicao-mouse]
+na documentação da biblioteca jQuery (veja os exemplos na página).
+
 
 ### Exercício 5: Definição da 1ª marcação
 
@@ -140,9 +186,20 @@ Faça com que o usuário possa definir as propriedades da 1ª marcação
 Quando o botão for clicado, as propriedades da 1ª marcação devem ser
 atualizadas.
 
-Como um mimo para os olhos do usuário, você pode colocar, em CSS, a
-propriedade `transition: all 200ms ease` na `.marcacao` para que os
-valores alterdos das propriedades façam uma transição suave (fica show).
+Para pegar o valor de um `input`, fazemos assim:
+
+```js
+// em vanilla JS:
+let largura = larguraEl.value;
+
+// com jQuery:
+let largura = $largura.val();
+```
+
+Para atualizar os valores de propriedades CSS em JavaScript usando jQuery,
+você deve usar o método `.css('propriedade', 'novo-valor')`, conforme
+[mostrado nos slides][jquery-css] e na
+[documentação da biblioteca][jquery-css-api].
 
 
 ### Desafio 1: Atualização mais ágil da marcação
@@ -152,8 +209,9 @@ faça com que assim que o usuário pressionar uma tecla em qualquer dos
 `input`s, a região da marcação seja atualizada. Aí você pode até tirar o
 botão do HTML.
 
-Isso pode ser feito com o evento `change` (ainda não vimos) que pode ser
-associado a um `input`.
+Isso pode ser feito com o evento `change` ou `input` que pode ser
+associado aos elementos `<input>` (usando jQuery, fica fácil fazer isso com todos
+de uma só vez :).
 
 
 ### Desafio 2: Definição da marcação sendo editada
@@ -161,10 +219,19 @@ associado a um `input`.
 Faça com que, em vez de poder alterar apenas a 1ª marcação, o usuário
 possa escolher qual delas quer atualizar.
 
-Uma ideia é: (1) ter uma variável global que aponta para a `marcacaoAtualEl`,
-(2) colocar eventos de `click` às marcações e, na _callback_ registrada, (3)
-atualizar o valor dessa variável para o elemento que foi alvo do evento.
+Uma ideia é ter uma variável "global" que aponta para quem é a marcação atual.
+Por exemplo:
 
+```js
+// inicialmente aponta para a primeira
+let $marcacaoAtual = $($marcacoes[0]);
+```
+...e, quando uma marcação é clicada (evento `click`), você altera o valor
+dessa variável para a devida `.marcacao`, usando `e.currentTarget`.
+
+Por fim, na hora de atualizar a marcação, em vez de sempre pegar a primeira,
+pega a `$marcacaoAtual` e altera suas propriedades CSS de acordo com o que
+está nos `input`s.
 
 ### Desafio 3: Escolha da imagem (_hardcore!_ 💣💣💣)
 
@@ -181,75 +248,94 @@ Referência: https://www.html5rocks.com/en/tutorials/file/dndfiles/
 
 ## FAQ
 
-### Balãozinho piscando quando movimento o mouse
+### O que é jQuery?
 
-Pode acontecer de o balãozinho ficar "piscando" quando você movimenta o
-mouse em cima da marcação. Isso acontece porque o navegador entende
-que ora o mouse está em cima da marcação, ora ele está em cima do
-balãozinho - e isso alterna muitas vezes por segundo.
+É uma biblioteca JavaScript (ou seja, um arquivo `.js` reutilizável) criada em 2006 com o objetivo de agilizar a escrita de código JavaScript.
 
-Uma forma de evitar isso é posicionar o balãozinho a uma certa distância
-do mouse, em vez de exatamente na posição dele. Outra forma é falar que
-a `<div id="balaozinho">...</div>` não "responde" a eventos de mouse.
-É possível fazer isso bem facilmente com uma propriedade CSS no
-`#balaozinho`: `pointer-events: none`.
+### Por quê usar o símbolo `$`?
 
-### Como altero uma propriedade CSS de um elemento dinamicamente?
+JavaScript têm algumas regras para se dar nomes a variáveis. Por exemplo, não é possível que um nome comece com um dígito:
 
-Há 2 formas, sendo uma delas colocando e tirando classes, e a outra
-[alterando a propriedades CSS diretamente][alterando-estilo-via-js].
-
-### Como fazer sombras em CSS?
-
-Existe a propriedade `box-shadow`. Ela funciona assim:
-
-```css
-div {
-  box-shadow: 4px 4px 4px silver;
-}
+```js
+let 3primeirosParagrafos = document.querySelectorAll('...');
+// isto é inválido!!
 ```
 
-O primeiro valor é o deslocamento horizontal da sombra (positivo vai para
-a direita), o segundo é o vertical (positivo vai para baixo), o terceiro
-é o quanto a sombra está "borrada" (para uma borda suave, coloque algo
-diferente de `0`) e o quarto é a cor da sombra.
+Apesar da proibição dos dígitos no início do nome, os
+símbolos `$` e `_` são válidos. John Resig, ao criar a
+biblioteca, escolheu o `$` como o nome da variável global
+que é uma função que expõe a funcionalidade da biblioteca
+**por ser curto e um caractere válido**.
 
-A cor da sombra, tipicamente, colocamos uma cor semitransparente
-(_e.g._, `rgba(...., 0.2)`).
+### O que é um **objeto jQuery**?
 
+A função jQuery (ou função `$` - dólar) retorna algo que
+chamamos de **objeto jQuery**, que parece com o que é retornado
+por `document.querySelectorAll`, mas não é igual.
 
-### Ficou um quadradinho visível no balãozinho
+Por exemplo, se o `document.querySelectorAll` não encontra nenhum elemento,
+ele retorna um _array_ vazio. A função `$` retorna um **objeto jQuery**,
+que pode representar **apenas 01 elemento da página ou uma coleção deles**.
 
-<img src="img/empty.png" style="float: right; margin-left: 1em; margin-bottom: 1em;">
-Se após estilizar o balãozinho (Exercício 2), ao tirar o mouse
-de cima de uma marcação, continuar aparecendo um quadradinho
-no lugar do balão, é devido ao `padding` (espaçamento interno)
-que foi colocado nele.
+Isso é interessante porque podemos, por exemplo, atribuir um evento a
+vários elementos de uma vez sem fazer um laço (_e.g._, um `for`):
 
-Para que o balãozinho fique oculto quando estiver vazio, nesse
-caso, uma forma é colocar um `balaozinhoEl.style.display = 'none'` no `mouseout` e `...display = 'block'` no `mouseover`.
-
-Ou então, dá pra fazer via CSS também, usando a pseudoclasse 
-`:empty`. Ela serve para estilizar elementos quando eles estão
-vazios (ou seja, seu `innerHTML === ''`). Então, poderia ser
-feito assim:
-
-```css
-#balaozinho:empty {
-  display: none;
+```js
+// em vanilla JS:
+let paragrafos = document.querySelectorAll('p');
+for (let paragrafoEl of paragrafos) {
+  paragrafoEl.addEventListener('click', expandeOuRetraiParagrafo);
 }
+
+// com jQuery:
+$('p').click(expandeOuRetraiParagrafo);
 ```
 
-Obs: fazendo isso, o quadradinho ainda ficará aparecendo quando
-a página carrega. Isso acontece porque o `.innerHTML` do balãozinho
-não está vazio, porque ele contém um comentário dentro dele.
-Nesse caso, basta apagar o comentário e não deixar nenhum espaço
-entre a tag de abertura e a de fechamento, assim: `<div id="balaozinho"></div>`.
+Outro caso de interesse é que, se o resultado da "busca no DOM" (_query_)
+não tiver nenhum elemento, o **objeto jQuery** ainda assim possui os
+métodos `.click`, `.mousemove`, `.css`, `.html` etc., que podem ser
+chamados sem que erros aconteçam.
 
-[inner-html]: https://fegemo.github.io/cefet-front-end/classes/js2/#alterando-o-conteudo
-[selecionar-varios]: https://fegemo.github.io/cefet-front-end/classes/js2/#selecionando-varios-elementos
-[posicao-mouse]: https://fegemo.github.io/cefet-front-end/classes/js3/#posicao-mouse
-[alterando-estilo-via-js]: https://fegemo.github.io/cefet-front-end/classes/js3/#estilizando-elementos-dinamicamente
-[associar-eventos]: https://fegemo.github.io/cefet-front-end/classes/js1/#evento-clique
-[eventos-de-mouse]: https://fegemo.github.io/cefet-front-end/classes/js3/#eventos-de-mouse
-[argumento-de-evento]: https://fegemo.github.io/cefet-front-end/classes/js2/#argumento-de-click
+Diferentemente, se não estamos usando jQuery e o resultado de um
+`document.querySelector('...')` não encontra nenhum elemento no DOM,
+o resultado é `null` e invocar qualquer coisa de `null` vai dar erro.
+Por exemplo:
+
+```js
+// em vanilla JS:
+let logoEl = document.querySelector('#logomca'); // digitei o id errado
+logoEl.addEventListener('click', tocaSom);       // dá erro!!!
+
+// com jQuery:
+$('#logomca').click(tocaSom); // não faz nada, mas tb não dá erro
+```
+
+### Por quê usar `$($marcacoes[0])` em vez de simplesmente `$marcacoes[0]`?
+
+Quando acessamos o "i-ésimo" item de um **objeto jQuery**, o que é retornado
+é um elemento HTML (_vanilla JS_) que representa esse elemento. Ou seja, `$marcacoes[0]` não retorna um **objeto jQuery**, mas um elemento
+HTML em _vanilla JS_.
+
+Caso você queira chamar métodos jQuery nesse elemento, precisamos fazer
+a consulta novamente, usando a biblioteca. Portanto, `$($marcacoes[0])`
+retorna um objeto jQuery que representa a primeira marcação.
+
+Alternativamente, em vez de usar `$($marcacoes[0])`, poderíamos usar
+o [método jQuery chamado `.first()`][jquery-first], que retorna
+o primeiro elemento de uma coleção. Portanto:
+
+```js
+let $primeiraMarcacao = $($marcacoes[0]);
+
+// ...é equivalente a:
+let $primeiraMarcacao = $marcacoes.first();
+```
+
+[baixe-aqui]: https://github.com/fegemo/cefet-front-end-snap/archive/jquery.zip
+[posicao-mouse]: https://api.jquery.com/mousemove/#mousemove-handler
+[incluindo-biblioteca]: https://fegemo.github.io/cefet-front-end/classes/js6/#incluindo-a-biblioteca-jquery
+[eventos-jquery]: https://fegemo.github.io/cefet-front-end/classes/js6/#jquery-atribuindo-eventos
+[jquery-alterar-html]: https://fegemo.github.io/cefet-front-end/classes/js6/#jquery-funcionamento-basico
+[jquery-css]: http://localhost:8081/classes/js6/#jquery-estilizando-elementos
+[jquery-css-api]: https://api.jquery.com/css/#css2
+[jquery-first]: https://api.jquery.com/first/#first
