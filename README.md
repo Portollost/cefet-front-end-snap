@@ -1,6 +1,6 @@
 # P~~oké~~hotoSnap :camera: x2
 
-Uma ferramenta para marcar suas fotos! Agora com **jQuery** =D
+[Baixe os arquivos da prática aqui](https://github.com/fegemo/cefet-front-end-snap/archive/jquery.zip). Uma ferramenta para marcar suas fotos! Agora com **jQuery** =D
 
 ![](https://fegemo.github.io/cefet-front-end-large-assets/apng/resultado-final.png)
 
@@ -233,18 +233,14 @@ Por fim, na hora de atualizar a marcação, em vez de sempre pegar a primeira,
 pega a `$marcacaoAtual` e altera suas propriedades CSS de acordo com o que
 está nos `input`s.
 
-### Desafio 3: Escolha da imagem (_hardcore!_ 💣💣💣)
+~~### Desafio 3: Escolha da imagem (_hardcore!_ 💣💣💣)~~ (jQuery não mudaria praticamente nada)
 
-Existe um `<input type="file">` que permite ao usuário escolher um arquivo
+~~Existe um `<input type="file">` que permite ao usuário escolher um arquivo
 de seu computador. Você pode colocar um desses na página e, assim que o
 usuário alterar valor desse `input` (evento `change`), seu código altera a
-imagem que está sendo anotada.
+imagem que está sendo anotada.~~
 
-**Desafio mais difícil**: veja o artigo a seguir e tente identificar um código
-nele que faz o que você precisa: deixa usuário escolher um arquivo e
-o coloca como uma imagem no lugar da foto dos pokémons.
-
-Referência: https://www.html5rocks.com/en/tutorials/file/dndfiles/
+~~Referência: https://www.html5rocks.com/en/tutorials/file/dndfiles/~~
 
 ## FAQ
 
